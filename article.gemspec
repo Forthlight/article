@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Article::VERSION
   s.authors     = ["The guy that flips tables"]
   s.email       = ["hello@forthlight.org"]
-  s.homepage    = "forthlight.org"
+  s.homepage    = "Forthlight.org"
   s.summary     = "ArticleEngine, it's GRAPE!."
   s.description = "TODO: Description of Article."
 
