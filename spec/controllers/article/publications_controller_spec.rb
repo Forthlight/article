@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Article
-  describe PublicationController do
+  describe PublicationsController do
 
     describe "GET 'index'" do
       it "returns http success" do

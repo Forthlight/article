@@ -11,7 +11,7 @@ require 'spec_helper'
 #   end
 # end
 module Article
-  describe PublicationHelper do
+  describe PublicationsHelper do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 end
