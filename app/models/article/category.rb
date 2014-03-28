@@ -9,6 +9,6 @@ module Article
     # Fields
     field :title, type: String
 
-
+    validates :title, presence: true, length: { maximum: 20 }, uniqueness: {case_sensitive: false}, format: { with: /\A[a-zA-Z0-9]+\Z/ }
   end
 end
