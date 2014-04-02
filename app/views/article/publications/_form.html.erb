@@ -1,0 +1,39 @@
+<%= form_for(@publication) do |f| %>
+  <% if @publication.errors.any? %>
+    <div class="error_messages">
+      <h3>Submission failed</h3>
+      <ul>
+        <% for message in @publication.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title%>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.text_area :content, size: '100x20' %>
+  </div>
+
+  <div>
+    <%= f.select(:type_id, Article::Type.all.collect{|t| [t.title, t.id]}, {:prompt => 'Choose Type'}) %>
+  </div>
+
+  <div>
+    <%= f.select(:category_id, Article::Category.all.collect{|c| [c.title, c.id]}, {:prompt => 'Choose Category'}) %>
+  </div>
+
+  <div>
+    <%= f.label :published%>
+    <%= f.check_box :published %>
+  </div>
+
+  <div>
+    <%= f.submit "Save" %>
+  </div>
+  
+<% end %>

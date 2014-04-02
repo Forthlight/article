@@ -1,3 +1,3 @@
 Article::Engine.routes.draw do
-  resources :publications
+  resources :publications, only: [:index, :show]
 end
