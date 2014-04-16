@@ -1,4 +1,24 @@
 <h1>Publication#index</h1>
+
+<%= form_tag({controller: :publications, action: :search}, method: :get) do -%>
+  <div><%= search_field_tag 'keyword', params['keyword'] %></div>
+  <div>
+    <p>Type</p>
+    <% @types.each do |type| %>
+      <%= label_tag type.title %>
+      <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: type.title %>
+    <% end %>
+  </div>
+  <div>
+    <p>Category</p>
+    <% @categories.each do |cat| %>
+      <%= label_tag cat.title %>
+      <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: cat.title %>
+    <% end %>
+  </div>
+  <div><%= submit_tag 'Search' %></div>
+<% end -%>
+
 <table>
   <% @publications.each do |article| %>
     <tr>
@@ -6,3 +26,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= paginate @publications, :remote => false %>
