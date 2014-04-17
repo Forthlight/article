@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'tinymce-rails'
   s.add_dependency "pg", "0.17.1"
   s.add_dependency 'mongoid', '4.0.0.beta1'
-  s.add_dependency 'kaminari', '~> 0.15.1'
+  
   s.add_dependency 'elasticsearch-model'
   s.add_dependency 'elasticsearch-rails'
   

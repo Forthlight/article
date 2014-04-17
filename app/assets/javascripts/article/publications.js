@@ -1,2 +1,15 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$(document).ready(function(){
+    $('#rate').one('click', function(event) {
+        $.ajax({
+            url: $(this).attr('ajax_path'),
+            type: "POST",
+            data: { },
+            dataType: "script",
+            async: true,
+            success: function(response){
+                console.log("Success!");
+                // response contains new rating, print it somewhere?
+            }
+        });
+    });
+});

@@ -15,5 +15,6 @@ module Article
     field :published, type: Boolean, default: false
     field :video_url, type: String
     field :author, type: Integer
+    field :rating, type: Integer
   end
 end
