@@ -1,5 +1,5 @@
 module Article
-  class ApplicationController < ActionController::Base
+  class Article::ApplicationController < ::ApplicationController
 
   end
 end

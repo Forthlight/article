@@ -1,5 +1,6 @@
 <h1>Publication#show</h1>
 <p>Find me in app/views/article/publication/show.html.erb</p>
+<%= link_to "Rate", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %>
 
 <pre>
   <%= @publication.to_yaml %>

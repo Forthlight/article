@@ -2,7 +2,7 @@ module Article
   class Type
     include Mongoid::Document
     
-    require 'article/publication'
+    #require 'article/publication'
 
     has_many :publications
 

@@ -20,6 +20,10 @@ Gem::Specification.new do |s|
   s.add_dependency "pg", "0.17.1"
   s.add_dependency 'mongoid', '4.0.0.beta1'
   
+  s.add_dependency 'elasticsearch-model'
+  s.add_dependency 'elasticsearch-rails'
+  
+  
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "minitest", "4.7.5"
 end
