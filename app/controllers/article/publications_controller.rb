@@ -13,9 +13,11 @@ module Article
 
     def search
       params[:types] ||= []
+      params[:clusters] ||= []
       params[:categories] ||= []
 
       types = params[:types].map(&:downcase)
+      clusters = params[:clusters].map(&:downcase)
       categories = params[:categories].map(&:downcase)
 
       if params[:keyword].empty?
@@ -38,6 +40,9 @@ module Article
                 must: [
                   {terms: {
                     "type.title" => types
+                  }},
+                  {terms: {
+                    "cluster_category.title" => clusters
                   }},
                   {terms: {
                     "category.title" => categories
@@ -67,6 +72,7 @@ module Article
 
     def checkbox_filters
       @types = Article::Type.all
+      @clusters = Article::ClusterCategory.all
       @categories = Article::Category.all
     end
   end

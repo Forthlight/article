@@ -5,15 +5,22 @@
   <div>
     <p>Type</p>
     <% @types.each do |type| %>
-      <%= label_tag type.title %>
-      <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: type.title %>
+      <%= label_tag type.title.gsub(/\s+/, ""), type.title %>
+      <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: type.title.gsub(/\s+/, "") %>
+    <% end %>
+  </div>
+  <div>
+    <p>Cluster category</p>
+    <% @clusters.each do |clu| %>
+      <%= label_tag clu.title.gsub(/\s+/, ""), clu.title %>
+      <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: clu.title.gsub(/\s+/, "") %>
     <% end %>
   </div>
   <div>
     <p>Category</p>
     <% @categories.each do |cat| %>
-      <%= label_tag cat.title %>
-      <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: cat.title %>
+      <%= label_tag cat.title.gsub(/\s+/, ""), cat.title %>
+      <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: cat.title.gsub(/\s+/, "") %>
     <% end %>
   </div>
   <div><%= submit_tag 'Search' %></div>
