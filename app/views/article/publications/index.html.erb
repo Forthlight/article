@@ -1,30 +1,71 @@
-<h1>Publication#index</h1>
+<div class="row-fluid">
+  <div class="span3">
+    <div class="side-head">
+      <h1><%= controller.controller_name.capitalize %></h1>
+    </div>
 
-<%= form_tag({controller: :publications, action: :search}, method: :get) do -%>
-  <div><%= search_field_tag 'keyword', params['keyword'] %></div>
-  <div>
-    <p>Type</p>
-    <% @types.each do |type| %>
-      <%= label_tag type.title %>
-      <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: type.title %>
-    <% end %>
-  </div>
-  <div>
-    <p>Category</p>
-    <% @categories.each do |cat| %>
-      <%= label_tag cat.title %>
-      <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: cat.title %>
-    <% end %>
-  </div>
-  <div><%= submit_tag 'Search' %></div>
-<% end -%>
+    <div class="side-info hidden-phone">
+     [Tracker here]<br>
+     [Tracker here]<br>
+     [Tracker here]<br>
+     [Tracker here]<br>
+     [Tracker here]<br>
+     [Tracker here]<br><br>
 
-<table>
-  <% @publications.each do |article| %>
+     [Advertisement here]<br>
+     [Advertisement here]<br>
+   </div>
+ </div>
+
+ <div class="span9">
+  <%= form_tag({controller: :publications, action: :search}, method: :get) do -%>
+
+  <div class="catalog-head">
+    <h3>
+      Search
+    </h3>
+  </div>
+
+  <div class="catalog check-style">
+    <div class="row-fluid searchform">
+      <div class="span10">
+        <%= search_field_tag 'keyword', params['keyword'], :placeholder=>"Search...", :class=>"span12 searchbar" %>
+      </div>
+      <div class="span2"><%= submit_tag 'Go', :class=>"mock-btn" %></div>
+    </div>
+
+    <div class="row-fluid searchform">
+        <div class="span4 checkerboard">
+         <% @types.each do |type| %>
+         <div class="span6 ">
+           <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: type.title %>
+           <%= label_tag type.title %>
+         </div>
+         <% end %>
+       </div>
+
+       <div class="span4 checkerboard">
+        <% @categories.each do |cat| %>
+        <div class="span6">
+          <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: cat.title %>
+          <%= label_tag cat.title %>
+        </div>
+        <% end %>
+      </div>
+  </div>
+  <% end -%>
+
+  <table>
+    <% @publications.each do |article| %>
     <tr>
-      <td><%= link_to article.title, publication_path(article.id) %></td>
+      <td>
+        <%= link_to article.title, publication_path(article.id) %>
+      </td>
     </tr>
-  <% end %>
-</table>
+    <% end %>
+  </table>
 
-<%= paginate @publications, :remote => false %>
+  <%= paginate @publications, :remote => false %>
+</div>
+</div>
+</div>
