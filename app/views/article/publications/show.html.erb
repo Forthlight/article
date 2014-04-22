@@ -1,15 +1,34 @@
-<h1>Publication#show</h1>
-<p>Find me in app/views/article/publication/show.html.erb</p>
-<%= link_to "Rate", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %>
+<div class="row-fluid">
+	<div class="span9">
+		<div class="side-head">
 
-<pre>
-  <%= @publication.to_yaml %>
-</pre>
+			<h1> <%= @publication.title %></h1>
 
-<pre>
-  <%= @publication.type.title.to_yaml %>
-</pre>
+		</div>
+		<div class="catalog">
+			<%= simple_format @publication.content %>
+      <br>
+      <i>Tags:<%= @publication.type.title %> <%= @publication.category.title %></i>
+		</div>
+	</div>
 
-<pre>
-  <%= @publication.category.title.to_yaml %>
-</pre>
+	<div class="span3">
+		<div class="side-head hidden-phone">
+			<h3>Post by <%= @publication.author %></h3>
+			<i>Posted <%= @publication.created_at.strftime("%d %b. %Y") %></i>
+		</div>
+		<div class="side-info hidden-phone">
+			<ul>
+				<% if admin_signed_in? %>
+				<li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
+				<li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
+
+				<%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+				<% else %>
+				<%= link_to "Rate", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %>
+				something useful
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
