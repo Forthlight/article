@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
   
   s.add_dependency 'elasticsearch-model'
   s.add_dependency 'elasticsearch-rails'
+
+  s.add_dependency 'wicked', '~> 1.0.2'
   
   
   s.add_development_dependency "rspec-rails"

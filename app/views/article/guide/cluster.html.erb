@@ -1,0 +1,14 @@
+<h2>Cluster</h2>
+<p>Choose the cluster you are interested in</p>
+
+<%= form_tag(article.guide_path(:keyword), :method => :get) do -%>
+  <div>
+    <% @clusters.each do |clu| %>
+      <div>
+        <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: clu.title.gsub(/\s+/, "") %>
+        <%= label_tag clu.title.gsub(/\s+/, ""), clu.title %>
+      </div>
+    <% end %>
+  </div>
+  <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn" %></div>
+<% end -%>

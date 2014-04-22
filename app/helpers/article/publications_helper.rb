@@ -11,5 +11,10 @@ module Article
         true
       end
     end
+
+    def remove_chars(value)
+      value.gsub(/\s+/, "")
+      value.gsub(/&/, "")
+    end
   end
 end
