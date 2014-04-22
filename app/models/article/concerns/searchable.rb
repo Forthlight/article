@@ -15,21 +15,22 @@ module Article::Concerns::Searchable
           indexes :title, index: :not_analyzed
         end
 
+        indexes :cluster_category, type: 'nested' do
+          indexes :title, index: :not_analyzed
+        end
+
         indexes :category, type: 'nested' do
           indexes :title, index: :not_analyzed
         end
       end
     end
 
-    # def self.search(query)
-    #   # ...
-    # end
-
     def as_indexed_json(options={})
       {
         title: title,
         content: content,
         type: type.as_json(only: [:title]),
+        cluster_category: cluster_category.as_json(only: [:title]),
         category: category.as_json(only: [:title])
       }
     end

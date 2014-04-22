@@ -8,6 +8,7 @@ module Article
 
     belongs_to :type, :class_name => "Article::Type"
     belongs_to :category, :class_name => "Article::Category"
+    belongs_to :cluster_category, :class_name => "Article::ClusterCategory"
 
     # Fields
     field :title, type: String
@@ -16,5 +17,7 @@ module Article
     field :video_url, type: String
     field :author, type: Integer
     field :rating, type: Integer
+
+    validates_presence_of :type_id, :category_id, :cluster_category_id, :title, :content
   end
 end
