@@ -1,5 +1,5 @@
 module Article
   module GuideHelper
-    include PublicationsHelper
+    include CommonDomain::TextHelper
   end
 end

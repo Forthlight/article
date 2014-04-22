@@ -5,8 +5,8 @@
   <div>
     <% @types.each do |type| %>
       <div>
-        <%= check_box_tag 'types[]', type.title, checked = is_checked?(session[:types], type.title), id: type.title.gsub(/\s+/, "") %>
-        <%= label_tag type.title.gsub(/\s+/, ""), type.title %>
+        <%= check_box_tag 'types[]', type.title, checked = is_checked?(session[:types], type.title), id: remove_chars(type.title) %>
+        <%= label_tag remove_chars(type.title), type.title %>
       </div>
     <% end %>
   </div>
