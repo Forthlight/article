@@ -1,4 +1,5 @@
 <div class="row-fluid">
+
 	<div class="span9">
 		<div class="side-head">
 
@@ -32,3 +33,37 @@
 		</div>
 	</div>
 </div>
+
+<% if admin_signed_in? || user_signed_in? %>
+  <div class="article-head">
+    <h3>New comment</h3>
+  </div>
+  <%= form_for [@publication, Article::Comment.new] do |f| %>
+    <p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
+    <p><%= f.submit "Send", :class=>"mock-btn" %></p>
+  <% end %>
+<% end %>
+
+<% if @publication.comments.size > 0 %>
+  <div class="article-comments">
+
+    <div class="article-head">
+      <h3>Comments</h3>
+    </div>
+
+    <% @publication.comments.reverse.each do |comment| %>
+      <div class="comment-post">
+        <% if comment.admin %>
+        	<h3 style="color:#FC6E51;">Administrator</h3>
+        <% else %>
+        	<b><%= find_author_name(comment.author) %></b>
+        <% end %>
+
+      	<i><%= comment.created_at.strftime("%I:%M %d %b, %Y") %></i>
+
+        <p><%= comment.content %></p>
+      </div>
+    <% end %>
+
+  </div>
+<% end %>

@@ -10,6 +10,8 @@ module Article
     belongs_to :category, :class_name => "Article::Category"
     belongs_to :cluster_category, :class_name => "Article::ClusterCategory"
 
+    embeds_many :comments, :class_name => "Article::Comment"
+
     # Fields
     field :title, type: String
     field :content, type: String
