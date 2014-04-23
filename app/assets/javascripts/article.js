@@ -10,5 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree './article'
+//= require jquery
+//= require jquery_ujs
 //= require common_domain
+//= require_tree './article'
