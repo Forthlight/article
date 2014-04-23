@@ -1,13 +1,14 @@
-<h2>Category</h2>
-<p>Choose the categories you are interested in</p>
+<h2>Step 2: Category</h2>
+<p>Choose the categories you are interested in.</p>
 
 <%= form_tag(article.guide_path(:cluster), :method => :get) do -%>
   <div>
     <% @categories.each do |cat| %>
       <div>
-        <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(session[:categories], cat.title), id: cat.title.gsub(/\s+/, "") %>
-        <%= label_tag cat.title.gsub(/\s+/, ""), cat.title %>
+        <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(session[:categories], cat.title), id: remove_chars(cat.title) %>
+        <%= label_tag remove_chars(cat.title), cat.title %>
       </div>
+      <p><%= cat.description %></p>
     <% end %>
   </div>
   <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn" %></div>

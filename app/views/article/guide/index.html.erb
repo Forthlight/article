@@ -11,11 +11,7 @@
 </table>
 
 <%= paginate @publications, :remote => false %>
-##########################
-<pre><%= session[:types].to_yaml %></pre>
-##########################
-<pre><%= session[:categories].to_yaml %></pre>
-##########################
-<pre><%= session[:clusters].to_yaml %></pre>
-##########################
-<pre><%= session[:keyword].to_yaml %></pre>
+
+<p>Did you not find what you were looking for? You can try again with different filters or you can try the alternative way of searching.</p>
+<%= link_to "Try again", article.guide_path(:type), :class=>"mock-btn" %>
+<%= link_to "Try alternative", article.publications_path, :class=>"mock-btn" %>

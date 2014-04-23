@@ -36,8 +36,8 @@
             <div class="span12"><b>Types</b></div>
             <% @types.each do |type| %>
               <div class="span6 check-style">
-                <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: type.title.gsub(/\s+/, "") %>
-                <%= label_tag type.title.gsub(/\s+/, ""), type.title %>
+                <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: remove_chars(type.title) %>
+                <%= label_tag remove_chars(type.title), type.title %>
               </div>
             <% end %>
           </div>
@@ -46,8 +46,8 @@
             <div class="span12"><b>Categories</b></div>
             <% @categories.each do |cat| %>
               <div class="span6 check-style">
-                <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: cat.title.gsub(/\s+/, "") %>
-                <%= label_tag cat.title.gsub(/\s+/, ""), cat.title %>
+                <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: remove_chars(cat.title) %>
+                <%= label_tag remove_chars(cat.title), cat.title %>
               </div>
             <% end %>
           </div>
@@ -56,8 +56,8 @@
             <div class="span12"><b>Clusters</b></div>
             <% @clusters.each do |clu| %>
               <div class="span6 check-style">
-                <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: clu.title.gsub(/\s+/, "") %>
-                <%= label_tag clu.title.gsub(/\s+/, ""), clu.title %>
+                <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: remove_chars(clu.title) %>
+                <%= label_tag remove_chars(clu.title), clu.title %>
               </div>
             <% end %>
           </div>
