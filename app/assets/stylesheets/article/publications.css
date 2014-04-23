@@ -2,3 +2,49 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+/*Searchbar*/
+
+.searchbar {
+  background: #efefef;
+  border: 0;
+  color:#222;
+  cursor: pointer;
+  display: inline-block;  
+  font-size: 16px;
+  margin:5px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+}
+
+.checkerboard {
+  width: auto;
+  background: #efefef;
+  margin: 10px;
+  padding:10px;
+  min-height: 250px!important;
+}
+
+
+.foundya {background: #efefef;
+padding:10px;
+margin:10px 0;
+width: 50%;
+}
+
+.pagination {
+	text-align: center;
+	margin:15px;
+}
+
+.next, .last, .first, .prev {
+	background: #4A8CF6;
+	padding:5px;
+	margin:5px;
+	color:#fff;
+}
+
+.next, .last, .first, .prev :hover {
+  background: #376bd8;
+}

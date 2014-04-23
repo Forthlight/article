@@ -1,0 +1,21 @@
+<h2>Results of the guided search</h2>
+
+<table>
+  <% @publications.each do |article| %>
+  <tr>
+    <td>
+      <%= link_to article.title, publication_path(article.id) %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= paginate @publications, :remote => false %>
+##########################
+<pre><%= session[:types].to_yaml %></pre>
+##########################
+<pre><%= session[:categories].to_yaml %></pre>
+##########################
+<pre><%= session[:clusters].to_yaml %></pre>
+##########################
+<pre><%= session[:keyword].to_yaml %></pre>

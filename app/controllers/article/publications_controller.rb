@@ -20,7 +20,7 @@ module Article
       clusters = params[:clusters].map(&:downcase)
       categories = params[:categories].map(&:downcase)
 
-      if params[:keyword].empty?
+      if params[:keyword].blank?
         query_part = { 
             match_all: { }
         }

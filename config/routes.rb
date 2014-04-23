@@ -5,4 +5,5 @@ Article::Engine.routes.draw do
   post "publications/rate/:id" => "publications#rate", :as => "rate"
 
   resources :publications, only: [:index, :show]
+  resources :guide
 end
