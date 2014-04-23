@@ -23,50 +23,50 @@
     </div>
     <%= form_tag({controller: :publications, action: :search}, method: :get) do -%>
       <div class="catalog">
-        <div id="filter">
         <div class="row-fluid searchform">
           <div class="span10">
             <%= search_field_tag 'keyword', params['keyword'], :placeholder=>"Search...", :class=>"span12 searchbar" %>
           </div>
           <div class="span2"><%= submit_tag 'Go', :class=>"mock-btn" %></div>
+          <div class="span2"><span id="show-filters" class="mock-btn">Filters</span></div>
         </div>
+        <div id="filters">
+          <div class="row-fluid searchform">
+            <div class="span4 checkerboard">
+              <div class="span12"><b>Types</b></div>
+              <% @types.each do |type| %>
+                <div class="span6 check-style">
+                  <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: remove_chars(type.title) %>
+                  <%= label_tag remove_chars(type.title), type.title %>
+                </div>
+              <% end %>
+            </div>
 
-        <div class="row-fluid searchform">
-          <div class="span4 checkerboard">
-            <div class="span12"><b>Types</b></div>
-            <% @types.each do |type| %>
-              <div class="span6 check-style">
-                <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: remove_chars(type.title) %>
-                <%= label_tag remove_chars(type.title), type.title %>
-              </div>
-            <% end %>
-          </div>
+            <div class="span4 checkerboard">
+              <div class="span12"><b>Categories</b></div>
+              <% @categories.each do |cat| %>
+                <div class="span6 check-style">
+                  <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: remove_chars(cat.title) %>
+                  <%= label_tag remove_chars(cat.title), cat.title %>
+                </div>
+              <% end %>
+            </div>
 
-          <div class="span4 checkerboard">
-            <div class="span12"><b>Categories</b></div>
-            <% @categories.each do |cat| %>
-              <div class="span6 check-style">
-                <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: remove_chars(cat.title) %>
-                <%= label_tag remove_chars(cat.title), cat.title %>
-              </div>
-            <% end %>
-          </div>
-
-          <div class="span4 checkerboard">
-            <div class="span12"><b>Clusters</b></div>
-            <% @clusters.each do |clu| %>
-              <div class="span6 check-style">
-                <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: remove_chars(clu.title) %>
-                <%= label_tag remove_chars(clu.title), clu.title %>
-              </div>
-            <% end %>
+            <div class="span4 checkerboard">
+              <div class="span12"><b>Clusters</b></div>
+              <% @clusters.each do |clu| %>
+                <div class="span6 check-style">
+                  <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: remove_chars(clu.title) %>
+                  <%= label_tag remove_chars(clu.title), clu.title %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     <% end -%>
 
-    <div class="catalog-head"><h3>Results</h3></div>
+    <div class="catalog-head"><h3>Articles</h3></div>
     <div class="catalog">
       
       <% @publications.each do |article| %>
