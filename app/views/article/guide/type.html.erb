@@ -1,3 +1,4 @@
+<div class="wiz">
 <h2>Guided search</h2>
 <p>This is the guided search, it allows you to specify one filter at a time with as much information as possible. Hopefully you will find what you need at the end of these few steps.</p>
 
@@ -7,12 +8,14 @@
 <%= form_tag(article.guide_path(:category), :method => :get) do -%>
   <div>
     <% @types.each do |type| %>
-      <div>
+      <div class ="check-style">
         <%= check_box_tag 'types[]', type.title, checked = is_checked?(session[:types], type.title), id: remove_chars(type.title) %>
         <%= label_tag remove_chars(type.title), type.title %>
       </div>
-      <p><%= type.description %></p>
+      <i><%= type.description %></i>
+      <br>
     <% end %>
   </div>
-  <div><%= submit_tag 'Next', :class=>"mock-btn" %></div>
+  <div><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
 <% end -%>
+</div>
