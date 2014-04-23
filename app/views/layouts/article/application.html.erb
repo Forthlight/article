@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render :file => "#{Rails.root}/app/views/shared/_navbar.html.erb" %>
-<%= yield %>
-
+		<%= render :file => "#{Rails.root}/app/views/shared/_navbar.html.erb" %>
+		        <div class="foot-wrapper">
+           			<%= yield %>
+           			<div class="push hidden-phone"></div>
+        		</div>
+		<%= render :file => "#{Rails.root}/app/views/shared/_footer.html.erb" %>
 </body>
 </html>

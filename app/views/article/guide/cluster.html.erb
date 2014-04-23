@@ -1,15 +1,18 @@
+<div class="wiz">
 <h2>Step 3: Cluster</h2>
 <p>Choose the clusters you are interested in.</p>
 
 <%= form_tag(article.guide_path(:keyword), :method => :get) do -%>
-  <div>
+  <div >
     <% @clusters.each do |clu| %>
-      <div>
+      <div class ="check-style" >
         <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: remove_chars(clu.title) %>
         <%= label_tag remove_chars(clu.title), clu.title %>
       </div>
-      <p><%= clu.description %></p>
+      <i><%= clu.description %></i>
+      <br>
     <% end %>
   </div>
-  <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn" %></div>
+  <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %>  <%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
 <% end -%>
+</div>
