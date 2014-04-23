@@ -3,7 +3,7 @@ require_dependency "article/application_controller"
 module Article
   class PublicationsController < ApplicationController
     def index
-      @publications = Article::Publication.all.page(params[:page]).per(2)
+      @publications = Article::Publication.all.page(params[:page]).per(10)
       checkbox_filters
     end
 
