@@ -6,6 +6,9 @@ module Article
     include Mongoid::Timestamps
     include Concerns::Searchable
 
+    before_save :sanitize_text
+    before_update :sanitize_text
+
     belongs_to :type, :class_name => "Article::Type"
     belongs_to :category, :class_name => "Article::Category"
     belongs_to :cluster_category, :class_name => "Article::ClusterCategory"
@@ -21,5 +24,9 @@ module Article
     field :rating, type: Integer
 
     validates_presence_of :type_id, :category_id, :cluster_category_id, :title, :content
+
+    def sanitize_text
+      self[:content] = CommonDomain::InputSanitizer.new.sanitize_this(self[:content])
+    end
   end
 end

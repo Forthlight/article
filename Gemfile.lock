@@ -2,10 +2,14 @@ PATH
   remote: .
   specs:
     article (0.0.1)
+      elasticsearch-model
+      elasticsearch-rails
+      kaminari (~> 0.15.1)
       mongoid (= 4.0.0.beta1)
       pg (= 0.17.1)
       rails (= 4.0.3)
       tinymce-rails
+      wicked (~> 1.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -36,13 +40,32 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.2)
     atomic (1.1.16)
-    bson (2.2.1)
+    bson (2.2.2)
     builder (3.1.4)
-    connection_pool (1.2.0)
+    connection_pool (2.0.0)
     diff-lcs (1.2.5)
+    elasticsearch (1.0.1)
+      elasticsearch-api (= 1.0.1)
+      elasticsearch-transport (= 1.0.1)
+    elasticsearch-api (1.0.1)
+      multi_json
+    elasticsearch-model (0.1.1)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.1)
+    elasticsearch-transport (1.0.1)
+      faraday
+      multi_json
     erubis (2.7.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    hashie (2.1.1)
     hike (1.2.3)
     i18n (0.6.9)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -53,13 +76,14 @@ GEM
       moped (~> 2.0.beta6)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
-    moped (2.0.0.beta6)
+    moped (2.0.0.rc1)
       bson (~> 2.2)
-      connection_pool (~> 1.2)
+      connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     multi_json (1.9.0)
+    multipart-post (2.0.0)
     optionable (0.2.0)
-    origin (2.1.0)
+    origin (2.1.1)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -110,6 +134,8 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.39)
+    wicked (1.0.2)
+      rails (>= 3.0.7)
 
 PLATFORMS
   ruby
