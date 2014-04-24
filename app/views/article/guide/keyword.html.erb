@@ -1,11 +1,20 @@
-<div class="wiz">
-<h2>Step 4: Keyword or phrase</h2>
-<p>Is there a word or phrase you wish to search for?</p>
+    <div class="wiz-wrap">
+    	<div class="row-fluid">
+    		<div class="span4 hidden-phone"></div>
+    		<div class="span4 wiz-content">
+    			<div class="wiz">
+    				<h2>Step 4: Keyword or phrase</h2>
+    				<p>Is there a word or phrase you wish to search for?</p>
 
-<%= form_tag(article.guide_path(:search), :method => :get) do -%>
-  <div>
-    <%= search_field_tag 'keyword', params['keyword'], :placeholder=>"Keyword or phrase...", :class=>"span12" %>
-  </div>
-  <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
-<% end -%>
-</div>
+    				<%= form_tag(article.guide_path(:search), :method => :get) do -%>
+    				<div>
+    					<%= search_field_tag 'keyword', params['keyword'], :placeholder=>"Keyword or phrase...", :class=>"span12" %>
+    				</div>
+    				<br>
+    				<div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
+    				<% end -%>
+    			</div>
+    		</div>
+    		<div class="span4 hidden-phone"></div>
+    	</div>
+    </div>

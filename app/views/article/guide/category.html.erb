@@ -1,20 +1,27 @@
-<div class="wiz">
-<h2>Step 2: Category</h2>
-<p>Choose the categories you are interested in.</p>
+    <div class="wiz-wrap">
+      <div class="row-fluid">
+        <div class="span4 hidden-phone"></div>
+        <div class="span4 wiz-content">
+        
+        <div class="wiz">
+        <h2>Step 2: Category</h2>
+        <p>Choose the categories you are interested in.</p>
 
-<%= form_tag(article.guide_path(:cluster), :method => :get) do -%>
-  <div>
-    <% @categories.each do |cat| %>
-      <div class ="check-style">
-        <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(session[:categories], cat.title), id: remove_chars(cat.title) %>
-        <%= label_tag remove_chars(cat.title), cat.title %>
+        <%= form_tag(article.guide_path(:cluster), :method => :get) do -%>
+        <div>
+          <% @categories.each do |cat| %>
+          <div class ="check-style">
+            <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(session[:categories], cat.title), id: remove_chars(cat.title) %>
+            <%= label_tag remove_chars(cat.title), cat.title %>
+          </div>
+          <div class="desc"><i><%= cat.description %></i></div>
+          <% end %>
+          <br>
+        </div>
+        <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
+        <% end -%>
       </div>
-      <i><%= cat.description %></i>
-      <br>
-    <% end %>
+      </div>
+    </div>
+    <div class="span4 hidden-phone"></div>
   </div>
-  <div><%= link_to "Previous", previous_wizard_path, :class=>"mock-btn" %><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
-<% end -%>
-</div>
-
-
