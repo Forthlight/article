@@ -24,7 +24,7 @@
     <%= form_tag({controller: :publications, action: :search}, method: :get) do -%>
       <div class="catalog">
         <div class="row-fluid searchform">
-          <div class="span10">
+          <div class="span8">
             <%= search_field_tag 'keyword', params['keyword'], :placeholder=>"Search...", :class=>"span12 searchbar" %>
           </div>
           <div class="span2"><%= submit_tag 'Go', :class=>"mock-btn" %></div>

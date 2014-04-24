@@ -1,21 +1,29 @@
-<div class="wiz">
-<h2>Guided search</h2>
-<p>This is the guided search, it allows you to specify one filter at a time with as much information as possible. Hopefully you will find what you need at the end of these few steps.</p>
+    <div class="wiz-wrap">
+      <div class="row-fluid">
+        <div class="span4 hidden-phone"></div>
+        <div class="span4 wiz-content">
+          <div class="wiz">
+            <h2>Guided search</h2>
+            <p>This is the guided search, it allows you to specify one filter at a time with as much information as possible. Hopefully you will find what you need at the end of these few steps.</p>
 
-<h2>Step 1: Type</h2>
-<p>Choose the types of articles you are interested in.</p>
+            <h2>Step 1: Type</h2>
+            <p>Choose the types of articles you are interested in.</p>
 
-<%= form_tag(article.guide_path(:category), :method => :get) do -%>
-  <div>
-    <% @types.each do |type| %>
-      <div class ="check-style">
-        <%= check_box_tag 'types[]', type.title, checked = is_checked?(session[:types], type.title), id: remove_chars(type.title) %>
-        <%= label_tag remove_chars(type.title), type.title %>
+            <%= form_tag(article.guide_path(:category), :method => :get) do -%>
+            <div>
+              <% @types.each do |type| %>
+              <div class ="check-style">
+                <%= check_box_tag 'types[]', type.title, checked = is_checked?(session[:types], type.title), id: remove_chars(type.title) %>
+                <%= label_tag remove_chars(type.title), type.title %>
+              </div>
+                <div class="desc"><i><%= type.description %></i></div>
+              <% end %>
+              <br>
+            </div>
+            <div><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
+            <% end -%>
+          </div>
+        </div>
+        <div class="span4 hidden-phone"></div>
       </div>
-      <i><%= type.description %></i>
-      <br>
-    <% end %>
-  </div>
-  <div><%= submit_tag 'Next', :class=>"mock-btn nxt" %></div>
-<% end -%>
-</div>
+    </div>

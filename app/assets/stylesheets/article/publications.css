@@ -30,7 +30,6 @@
 .foundya {background: #efefef;
 padding:10px;
 margin:10px 0;
-width: 100%;
 }
 
 .pagination {
@@ -43,6 +42,10 @@ width: 100%;
 	padding:5px;
 	margin:5px;
 	color:#fff;
+}
+
+#show-filters {
+  margin-right: 3%;
 }
 
 .next, .last, .first, .prev :hover {

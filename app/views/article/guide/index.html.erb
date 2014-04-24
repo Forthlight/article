@@ -1,19 +1,29 @@
-<div class="wiz">
-<h2>Results of the guided search</h2>
+    <div class="wiz-wrap">
+    	<div class="row-fluid">
+    		<div class="span4 hidden-phone"></div>
+    		<div class="span4 wiz-content">
+    			<div class="wiz">
+    				<h2>Results of the guided search</h2>
 
-<table>
-  <% @publications.each do |article| %>
-  <tr>
-    <td>
-      <%= link_to article.title, publication_path(article.id) %>
-    </td>
-  </tr>
-  <% end %>
-</table>
 
-<%= paginate @publications, :remote => false %>
+           <% @publications.each do |article| %>
+           
+           <div class="foundya">
+            <h3><%= link_to article.title, publication_path(article.id) %></h3>
+            <p><%= truncate_to_paragraph(article.content) %></p>
+            <i>Published <%= article.created_at.strftime("%d %b. %Y") %></i>
+          </div>
+          
+          <% end %>
 
-<p>Did you not find what you were looking for? You can try again with different filters or you can try the alternative way of searching.</p>
-<%= link_to "Try again", article.guide_path(:type), :class=>"mock-btn" %>
-<%= link_to "Try alternative", article.publications_path, :class=>"mock-btn" %>
-</div>
+
+          <%= paginate @publications, :remote => false %>
+
+          <p>Did you not find what you were looking for? You can try again with different filters or you can try the alternative way of searching.</p>
+          <%= link_to "Try again", article.guide_path(:type), :class=>"mock-btn" %>
+          <%= link_to "Try alternative", article.publications_path, :class=>"mock-btn" %>
+        </div>
+      </div>
+      <div class="span4 hidden-phone"></div>
+    </div>
+  </div>

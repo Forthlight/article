@@ -68,7 +68,7 @@ module Article
         }
       }
 
-      @publications = Article::Publication.search(query).page(params[:page]).per(1).records
+      @publications = Article::Publication.search(query).page(params[:page]).per(10).records
       
       render :index
     end
