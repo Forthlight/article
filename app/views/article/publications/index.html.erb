@@ -37,7 +37,7 @@
               <% @types.each do |type| %>
                 <div class="span6 check-style">
                   <%= check_box_tag 'types[]', type.title, checked = is_checked?(params[:types], type.title), id: remove_chars(type.title) %>
-                  <%= label_tag remove_chars(type.title), type.title, :title => type.description %>
+                  <%= label_tag remove_chars(type.title), restore_whitespace(type.title), :title => type.description %>
                 </div>
               <% end %>
             </div>
@@ -47,7 +47,7 @@
               <% @categories.each do |cat| %>
                 <div class="span6 check-style">
                   <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(params[:categories], cat.title), id: remove_chars(cat.title) %>
-                  <%= label_tag remove_chars(cat.title), cat.title, :title => cat.description %>
+                  <%= label_tag remove_chars(cat.title), restore_whitespace(cat.title), :title => cat.description %>
                 </div>
               <% end %>
             </div>
@@ -57,7 +57,7 @@
               <% @clusters.each do |clu| %>
                 <div class="span6 check-style">
                   <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: remove_chars(clu.title) %>
-                  <%= label_tag remove_chars(clu.title), clu.title, :title => clu.description %>
+                  <%= label_tag remove_chars(clu.title), restore_whitespace(clu.title), :title => clu.description %>
                 </div>
               <% end %>
             </div>
@@ -67,18 +67,18 @@
     <% end -%>
 
     <div class="catalog-head"><h3>Articles</h3></div>
-    <div class="catalog">
+      <div class="catalog">
       
-      <% @publications.each do |article| %>
+        <% @publications.each do |article| %>
 
-        <div class="foundya">
-          <h3><%= link_to article.title, publication_path(article.id) %></h3>
-          <p><%= truncate_to_paragraph(article.content) %></p>
-          <i>Published <%= article.created_at.strftime("%d %b. %Y") %></i>
-        </div>
-      <% end %>
+          <div class="foundya">
+            <h3><%= link_to article.title, publication_path(article.id) %></h3>
+            <p><%= truncate_to_paragraph(article.content) %></p>
+            <i>Published <%= article.created_at.strftime("%d %b. %Y") %></i>
+          </div>
+        <% end %>
 
-    <%= paginate @publications, :remote => false %>
-</div>
+        <%= paginate @publications, :remote => false %>
+    </div>
   </div>
 </div>

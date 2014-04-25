@@ -9,6 +9,7 @@ module Article::Concerns::Searchable
       mapping do
         indexes :title, analyzer: 'standard'
         indexes :content, analyzer: 'standard'
+        indexes :author_type, type: 'standard'
         indexes :created_at, type: 'date'
 
         indexes :type, type: 'nested' do
@@ -29,6 +30,7 @@ module Article::Concerns::Searchable
       {
         title: title,
         content: content,
+        author_type: author_type,
         type: type.as_json(only: [:title]),
         cluster_category: cluster_category.as_json(only: [:title]),
         category: category.as_json(only: [:title])

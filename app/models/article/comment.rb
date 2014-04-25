@@ -9,6 +9,6 @@ module Article
     field :content, type: String
     field :admin, type: Boolean
 
-    validates :content, presence: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+    validates :content, presence: true
   end
 end

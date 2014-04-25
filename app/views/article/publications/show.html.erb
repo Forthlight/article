@@ -7,61 +7,81 @@
 
 		</div>
 		<div class="catalog">
-			<%= simple_format @publication.content %>
-			<br>
-			<i>Tags:<%= @publication.type.title %> <%= @publication.category.title %></i>
+			<div>
+				<%=raw @publication.content %>
+			</div>
 
 			<% if admin_signed_in? || user_signed_in? %>
-			<div class="side-head">
-				<h3>New comment</h3>
-			</div>
-			<%= form_for [@publication, Article::Comment.new] do |f| %>
-			<p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
-			<p><%= f.submit "Send", :class=>"mock-btn" %></p>
-			<% end %>
+				<div class="side-head">
+					<h3>New comment</h3>
+				</div>
+				<%= form_for [@publication, Article::Comment.new] do |f| %>
+					<p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
+					<p><%= f.submit "Send", :class=>"mock-btn" %></p>
+				<% end %>
 			<% end %>
 
 			<% if @publication.comments.size > 0 %>
-			<div class="article-comments">
+				<div class="article-comments">
 
-				<div class="side-head">
-					<h3>Comments</h3>
-				</div>
+					<div class="side-head">
+						<h3>Comments</h3>
+					</div>
 
-				<% @publication.comments.reverse.each do |comment| %>
-				<div class="comment-post">
-					<% if comment.admin %>
-					<h3 style="color:#FC6E51;">Administrator</h3>
-					<% else %>
-					<b><%= find_author_name(comment.author) %></b>
+					<% @publication.comments.reverse.each do |comment| %>
+						<div class="comment-post">
+							<% if comment.admin %>
+							<h3 style="color:#FC6E51;">Administrator</h3>
+							<% else %>
+							<b><%= find_author_name(comment.author) %></b>
+							<% end %>
+
+							<i><%= comment.created_at.strftime("%I:%M %d %b, %Y") %></i>
+
+							<p><%= comment.content %></p>
+						</div>
 					<% end %>
 
-					<i><%= comment.created_at.strftime("%I:%M %d %b, %Y") %></i>
-
-					<p><%= comment.content %></p>
 				</div>
-				<% end %>
-
-			</div>
 			<% end %>
 		</div>
 	</div>
 
 	<div class="span3">
 		<div class="side-head hidden-phone">
-			<h3>Post by <%= @publication.author %></h3>
-			<i>Posted <%= @publication.created_at.strftime("%d %b. %Y") %></i>
+			<h3>Authored by <%= link_to find_author_name(@publication.author), member.profile_path(@publication.author) %></h3>
+			<i>Published <%= @publication.created_at.strftime("%d %b. %Y") %></i>
+			<p>
+				<i><%= restore_whitespace(@publication.category.title) %></i> - 
+	      <i><%= restore_whitespace(@publication.type.title) %></i> - 
+	      <i><%= restore_whitespace(@publication.cluster_category.title) %></i>
+	    </p>
 		</div>
 		<div class="side-info hidden-phone">
 			<ul>
-				<% if admin_signed_in? %>
-				<li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
-				<li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
+				<li>This article has been useful to <span id="current-rating" class="no-float"><%= @publication.rating ? @publication.rating : 0 %></span> people</li>
+				<li><%= link_to "Was this article useful to you? Click here!", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %></li>
 
-				<%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+				<% if admin_signed_in? %>
+					<li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
+					<li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
+
+					<%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
+				<% end %>
+			</ul>
+		</div>
+
+		<div class="side-head hidden-phone">
+			<h3>Related articles</h3>
+		</div>
+		<div class="side-info hidden-phone">
+			<ul>
+				<% if @related.size > 0 %>
+					<% @related.each do |rel| %>
+						<li><%= link_to rel.title, article.publication_path(rel.id) %></li>
+					<% end %>
 				<% else %>
-				<%= link_to "Rate", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %>
-				something useful
+					<li>No related articles found</li>
 				<% end %>
 			</ul>
 		</div>
