@@ -9,7 +9,7 @@ module Article::Concerns::Searchable
       mapping do
         indexes :title, analyzer: 'standard'
         indexes :content, analyzer: 'standard'
-        indexes :author_type, type: 'standard'
+        indexes :author_type, analyzer: 'standard'
         indexes :created_at, type: 'date'
 
         indexes :type, type: 'nested' do
