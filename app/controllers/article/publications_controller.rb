@@ -49,6 +49,7 @@ module Article
 
       @cc = clusters
 
+      # if no keyword present match all (with filters), otherwise match against keyword also
       if params[:keyword].blank?
         query_part = { 
             match_all: { }
@@ -62,27 +63,38 @@ module Article
           }
       end
 
-      query = { query: {
-          filtered: {
-            filter: {
-              bool: {
-                must: [
-                  {terms: {
-                    "type.title" => types
-                  }},
-                  {terms: {
-                    "cluster_category.title" => clusters
-                  }},
-                  {terms: {
-                    "category.title" => categories
-                  }}
-                ]
-              }
-            },
-            query: query_part
+      # if no filters are present, only use the keyword or match all (this will be used by search in header)
+      if types.blank? && clusters.blank? && categories.blank?
+        query = { query: {
+            filtered: {
+              query: query_part
+            }
           }
         }
-      }
+      else
+        query = { query: {
+            filtered: {
+              filter: {
+                bool: {
+                  must: [
+                    {terms: {
+                      "type.title" => types
+                    }},
+                    {terms: {
+                      "cluster_category.title" => clusters
+                    }},
+                    {terms: {
+                      "category.title" => categories
+                    }}
+                  ]
+                }
+              },
+              query: query_part
+            }
+          }
+        }
+      end
+      
 
       @publications = Publication.search(query).page(params[:page]).per(10).records
 
