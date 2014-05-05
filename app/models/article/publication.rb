@@ -20,10 +20,12 @@ module Article
     field :content, type: String
     field :published, type: Boolean, default: false
     field :video_url, type: String
+    field :author_type, type: String
     field :author, type: Integer
     field :rating, type: Integer
 
     validates_presence_of :type_id, :category_id, :cluster_category_id, :title, :content
+    validates :title, presence: true, length: { maximum: 140 }, format: { with: /\A[a-zA-Z0-9_\s,\.&]+\Z/ }
 
     def sanitize_text
       self[:content] = CommonDomain::InputSanitizer.new.sanitize_this(self[:content])

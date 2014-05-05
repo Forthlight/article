@@ -9,6 +9,33 @@ module Article
 
     def show
       @publication = Article::Publication.find(params[:id])
+
+      query = { query: {
+          filtered: {
+            filter: {
+              bool: {
+                should: [
+                  {terms: {
+                    "type.title" => [@publication.type.title.downcase]
+                  }},
+                  {terms: {
+                    "cluster_category.title" => [@publication.cluster_category.title.downcase]
+                  }},
+                  {terms: {
+                    "category.title" => [@publication.category.title.downcase]
+                  }}
+                ]
+              }
+            },
+            query: {
+              match_all: { }
+            }
+          }
+        },
+        size: 5
+      }
+
+      @related = Article::Publication.search(query).records
     end
 
     def search
@@ -20,6 +47,9 @@ module Article
       clusters = params[:clusters].map(&:downcase)
       categories = params[:categories].map(&:downcase)
 
+      @cc = clusters
+
+      # if no keyword present match all (with filters), otherwise match against keyword also
       if params[:keyword].blank?
         query_part = { 
             match_all: { }
@@ -27,35 +57,46 @@ module Article
       else
         query_part = { 
             multi_match: {
-              fields: ['title^2', 'content'],
+              fields: ['title^10', 'content'],
               query: params[:keyword]
             }
           }
       end
 
-      query = { query: {
-          filtered: {
-            filter: {
-              bool: {
-                must: [
-                  {terms: {
-                    "type.title" => types
-                  }},
-                  {terms: {
-                    "cluster_category.title" => clusters
-                  }},
-                  {terms: {
-                    "category.title" => categories
-                  }}
-                ]
-              }
-            },
-            query: query_part
+      # if no filters are present, only use the keyword or match all (this will be used by search in header)
+      if types.blank? && clusters.blank? && categories.blank?
+        query = { query: {
+            filtered: {
+              query: query_part
+            }
           }
         }
-      }
+      else
+        query = { query: {
+            filtered: {
+              filter: {
+                bool: {
+                  must: [
+                    {terms: {
+                      "type.title" => types
+                    }},
+                    {terms: {
+                      "cluster_category.title" => clusters
+                    }},
+                    {terms: {
+                      "category.title" => categories
+                    }}
+                  ]
+                }
+              },
+              query: query_part
+            }
+          }
+        }
+      end
+      
 
-      @publications = Publication.search(query).page(params[:page]).per(1).records
+      @publications = Publication.search(query).page(params[:page]).per(10).records
 
       checkbox_filters
       render :index
