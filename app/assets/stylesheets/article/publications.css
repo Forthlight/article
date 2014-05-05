@@ -16,6 +16,7 @@
   height: 40px;
   line-height: 40px;
   padding: 0 20px;
+  cursor: text;
 }
 
 .checkerboard {
@@ -47,6 +48,8 @@ margin:10px 0;
 #show-filters {
   margin-right: 3%;
 }
+
+#filters {display: none;}
 
 .next, .last, .first, .prev :hover {
   background: #376bd8;

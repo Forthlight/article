@@ -71,9 +71,11 @@
       
       <% @publications.each do |article| %>
 
-        <div class="foundya">
+        <div class="foundya ">
           <h3><%= link_to article.title, publication_path(article.id) %></h3>
-          <p><%= truncate_to_paragraph(article.content) %></p>
+          <div class="structurise">
+          <%= truncate_to_paragraph(article.content) %>
+        </div>
           <i>Published <%= article.created_at.strftime("%d %b. %Y") %></i>
         </div>
       <% end %>
