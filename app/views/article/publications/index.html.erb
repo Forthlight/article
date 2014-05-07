@@ -2,24 +2,23 @@
 <div class="row-fluid">
   <div class="span3">
     <div class="side-head">
-      <h1><%= controller.controller_name.capitalize %></h1>
+      <h1>Articles</h1>
     </div>
 
     <div class="side-info hidden-phone">
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br>
-      [Tracker here]<br><br>
+      <p>You can find articles in a couple of ways.</p>
+      <ol>
+        <li>Browse with the page controls</li>
+        <li>Enter a word or phrase in the search-box and click "Go"</li>
+        <li>Select filters and click "Go"</li>
+        <li>Combine all the above!</li>
+      </ol>
     </div>
   </div>
 
   <div class="span9">
     <div class="catalog-head hidden-phone">
-      <h3>
-        Search
-      </h3>
+      <h3>Search</h3>
     </div>
     <%= form_tag({controller: :publications, action: :search}, method: :get) do -%>
       <div class="catalog">
@@ -70,18 +69,15 @@
 
     <div class="catalog-head"><h3>Articles</h3></div>
       <div class="catalog">
-      
         <% @publications.each do |article| %>
-
-        <div class="foundya ">
-          <h3><%= link_to article.title, publication_path(article.id) %></h3>
-          <div class="structurise">
-          <%= truncate_to_paragraph(article.content) %>
-        </div>
-          <i>Published <%= article.created_at.strftime("%d %b. %Y") %></i>
-        </div>
-      <% end %>
-
+          <div class="foundya ">
+            <h3><%= link_to article.title, publication_path(article.id) %></h3>
+            <div class="structurise">
+            <%= truncate_to_paragraph(article.content) %>
+          </div>
+            <i>Published <%= article.created_at.strftime("%d %b. %Y") %></i>
+          </div>
+        <% end %>
 
         <%= paginate @publications, :remote => false %>
     </div>
