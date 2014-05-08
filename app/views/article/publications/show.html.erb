@@ -65,13 +65,6 @@
 			<ul>
 				<li>This article has been useful to <span id="current-rating" class="no-float"><%= @publication.rating ? @publication.rating : 0 %></span> people</li>
 				<li><%= link_to "Was this article useful to you? Click here!", "#", id: "rate", :ajax_path => article.rate_path(@publication.id) %></li>
-
-				<% if admin_signed_in? %>
-					<li><%= link_to 'Edit This post', edit_blog_path(@blog) %></li>
-					<li><%= link_to 'Delete This post', @blog, confirm: 'Are you sure?', :method => :delete %></li>
-
-					<%= render :file => "#{Administration::Engine.root}/app/views/shared/_shortcuts.html.erb" %>
-				<% end %>
 			</ul>
 		</div>
 
