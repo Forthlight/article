@@ -6,13 +6,23 @@
     </div>
 
     <div class="side-info hidden-phone">
-      <p>You can find articles in a couple of ways.</p>
+      <p>You can find articles in a couple of ways:</p>
       <ol>
         <li>Browse with the page controls</li>
         <li>Enter a word or phrase in the search-box and click "Go"</li>
         <li>Select filters and click "Go"</li>
+        <li>To see explanations of the filters, hold the mouse pointer over them!</li>
         <li>Combine all the above!</li>
       </ol>
+
+      <p>If you do not find what you are looking for: </p>
+      <ol>
+        <li>Try synonyms or similar words to search for.</li>
+        <li>Use the filters to narrow the search</li>
+        <li>Give the <%= link_to "guided search", article.guide_path(:type) %> a go. </li>
+      </ol>
+
+      <p>You can ask the author questions, discuss or commend the article by commenting. To do this you need to be registered and logged in.</p>
     </div>
   </div>
 
