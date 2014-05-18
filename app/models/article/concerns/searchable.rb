@@ -11,6 +11,7 @@ module Article::Concerns::Searchable
         indexes :content, analyzer: 'standard'
         indexes :author_type, analyzer: 'standard'
         indexes :created_at, type: 'date'
+        indexes :published, type: 'boolean', analyzer: 'standard'
 
         indexes :type, type: 'nested' do
           indexes :title, index: :not_analyzed
@@ -31,6 +32,7 @@ module Article::Concerns::Searchable
         title: title,
         content: content,
         author_type: author_type,
+        published: published,
         type: type.as_json(only: [:title]),
         cluster_category: cluster_category.as_json(only: [:title]),
         category: category.as_json(only: [:title])

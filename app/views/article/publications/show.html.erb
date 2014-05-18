@@ -2,7 +2,7 @@
 
 	<div class="span9">
 		<div class="side-head">
-			<h1> <%= @publication.title %></h1>
+			<h1><%= @publication.title %></h1>
 		</div>
 		<div class="catalog">
 
@@ -15,8 +15,8 @@
 					<h3>New comment</h3>
 				</div>
 				<%= form_for [@publication, Article::Comment.new] do |f| %>
-				<p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
-				<p><%= f.submit "Send", :class=>"mock-btn" %></p>
+					<p><%= f.text_area :content, :rows => 10, :class=>"span12" %></p>
+					<p><%= f.submit "Send", :class=>"mock-btn" %></p>
 				<% end %>
 			<% end %>
 
@@ -49,17 +49,18 @@
 	<div class="span3">
 		<div class="side-head hidden-phone">
 			<% if find_author_name(@publication.author) %>
-				<h3>Authored by <%= link_to find_author_name(@publication.author), member.profile_path(@publication.author) %></h3>
+				<h3>Article authored by <%= link_to find_author_name(@publication.author), member.profile_path(@publication.author) %></h3>
 			<% else %>
-				<h3>Author has closed the account</h3>
+				<h3>Unknown author, account closed</h3>
 			<% end %>
-			
+		</div>
+		<div class="side-info hidden-phone">
 			<i>Published <%= @publication.created_at.strftime("%d %b. %Y") %></i>
-			<p>
+			<div>
 				<i><%= restore_whitespace(@publication.category.title) %></i> - 
 				<i><%= restore_whitespace(@publication.type.title) %></i> - 
 				<i><%= restore_whitespace(@publication.cluster_category.title) %></i>
-			</p>
+			</div>
 		</div>
 		<div class="side-info hidden-phone">
 			<ul>
@@ -74,13 +75,17 @@
 		<div class="side-info hidden-phone">
 			<ul>
 				<% if @related.size > 0 %>
-				<% @related.each do |rel| %>
-				<li><%= link_to rel.title, article.publication_path(rel.id) %></li>
-				<% end %>
+					<% @related.each do |rel| %>
+						<li><%= link_to rel.title, article.publication_path(rel.id) %></li>
+					<% end %>
 				<% else %>
-				<li>No related articles found</li>
+					<li>No related articles found</li>
 				<% end %>
 			</ul>
+		</div>
+
+		<div class="side-info hidden-phone">
+			<%= link_to_function("Print this article", "javascript:print()", :class => "mock-btn") %>
 		</div>
 	</div>
 </div>

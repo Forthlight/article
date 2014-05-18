@@ -8,6 +8,8 @@ module Article
 
     before_save :sanitize_text
     before_update :sanitize_text
+    after_save :update_index
+    after_update :update_index
 
     belongs_to :type, :class_name => "Article::Type"
     belongs_to :category, :class_name => "Article::Category"
@@ -29,6 +31,10 @@ module Article
 
     def sanitize_text
       self[:content] = CommonDomain::InputSanitizer.new.sanitize_this(self[:content])
+    end
+
+    def update_index
+      self.__elasticsearch__.update_document
     end
   end
 end
