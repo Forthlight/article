@@ -11,7 +11,7 @@
               <% @clusters.each do |clu| %>
               <div class ="check-style" >
                 <%= check_box_tag 'clusters[]', clu.title, checked = is_checked?(params[:clusters], clu.title), id: remove_chars(clu.title) %>
-                <%= label_tag remove_chars(clu.title), clu.title %> 
+                <%= label_tag remove_chars(clu.title), restore_whitespace(clu.title) %> 
                 </div>
                 <div class="desc"><i><%= clu.description %></i></div>
               <% end %>

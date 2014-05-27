@@ -14,7 +14,7 @@
               <% @types.each do |type| %>
               <div class ="check-style">
                 <%= check_box_tag 'types[]', type.title, checked = is_checked?(session[:types], type.title), id: remove_chars(type.title) %>
-                <%= label_tag remove_chars(type.title), type.title %>
+                <%= label_tag remove_chars(type.title), restore_whitespace(type.title) %>
               </div>
                 <div class="desc"><i><%= type.description %></i></div>
               <% end %>

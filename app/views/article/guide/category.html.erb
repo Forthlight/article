@@ -12,7 +12,7 @@
           <% @categories.each do |cat| %>
           <div class ="check-style">
             <%= check_box_tag 'categories[]', cat.title, checked = is_checked?(session[:categories], cat.title), id: remove_chars(cat.title) %>
-            <%= label_tag remove_chars(cat.title), cat.title %>
+            <%= label_tag remove_chars(cat.title), restore_whitespace(cat.title) %>
           </div>
           <div class="desc"><i><%= cat.description %></i></div>
           <% end %>
